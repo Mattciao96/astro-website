@@ -1,0 +1,55 @@
+---
+import '@/styles/global.css';
+import Navigation from "@/components/Navigation.astro";
+import Footer from "@/components/Footer.astro";
+
+
+const pageTitle = "About Me";
+const identity = {
+  firstName: "Sarah",
+  country: "Canada",
+  occupation: "Technical Writer",
+  hobbies: ["photography", "birdwatching", "baseball"],
+};
+
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
+
+function getRandomInt(max: number) {
+  return Math.floor(Math.random() * max);
+}
+const skillColors = ['red', 'blue', 'green', 'yellow', 'purple', 'pink'];
+const skillColor = skillColors[getRandomInt(skillColors.length)];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <Navigation />
+    <h1>{pageTitle}</h1>
+    <h2>... and my new Astro site!</h2>
+
+    <p>
+      I am working through Astro's introductory tutorial. This is the second page on my website, and
+      it's the first one I built myself!
+    </p>
+
+    <p>
+      This site will update as I complete more of the tutorial, so keep checking back and see how my
+      journey is going!
+    </p>
+    My skills are:
+    <ul>
+      {skills.map((skill) => <li class="random-color p-2 m-2 border border-red-500 rounded-md max-w-32">{skill}</li>)}
+    </ul>
+    <Footer/>
+  </body>
+</html>
+
+<style define:vars={{skillColor}}>
+  .random-color {
+    background-color: var(--skillColor);
+  }
