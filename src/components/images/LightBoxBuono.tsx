@@ -1,21 +1,19 @@
-import * as React from "react";
+import * as React from 'react'
 import { Button, Dialog, DialogTrigger, Heading, Modal, ModalOverlay } from "react-aria-components";
 import { Image } from "astro:assets";
 import SwiperBox from "@/components/images/SwiperBox";
 // function that render the modal with the swiperbox inside,
 // you can use SwiperBox without the modal
 export default function LightBox({ images }) {
-  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [currentIndex, setCurrentIndex] = React.useState(0)
   return (
     <DialogTrigger>
       {images.map((image, index) => (
-        <Button
-          onPress={() => setCurrentIndex(index)}
-          className="cursor-pointer focus-visible:ring-2 focus-visible:ring-white/75"
-        >
+        <Button onPress={()=>setCurrentIndex(index)} className="cursor-pointer focus-visible:ring-2 focus-visible:ring-white/75">
           <img
-       
-            class="rounded-md object-contain  max-h-[160px] min-h-[160px]"
+            width="224"
+            height="160"
+            class="rounded-md object-cover  max-w-[224px] min-w-[224px] max-h-[160px] min-h-[160px]"
             src={image.thumbnail}
             alt={image.id}
           />
@@ -30,7 +28,7 @@ export default function LightBox({ images }) {
       >
         <Modal
           className={({ isEntering, isExiting }) => `
-            w-full h-full overflow-hidden text-left align-middle shadow-xl
+            w-full max-w-md overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl
             ${isEntering ? "animate-in zoom-in-95 ease-out duration-300" : ""}
             ${isExiting ? "animate-out zoom-out-95 ease-in duration-200" : ""}
           `}
@@ -49,9 +47,7 @@ export default function LightBox({ images }) {
                   Are you sure you want to delete "Documents"? All contents will be permanently
                   destroyed.
                 </p>
-                <div className="max-w-[600px]">
-                  <SwiperBox images={images} currentImageId={currentIndex} />
-                </div>
+                <SwiperBox images={images} currentImageId={currentIndex} />
                 <div className="mt-6 flex justify-end gap-2">
                   <DialogButton
                     className="bg-slate-200 text-slate-800 hover:border-slate-300 pressed:bg-slate-300"
