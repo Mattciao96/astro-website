@@ -1,7 +1,28 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 const pageTitle = 'Home';
+
+// take images from api
+type LichenImage = {
+  id: string,
+  thumbnail: string,
+  image: string,
+  author: string,
+  owner: string
+}
+
+const images: Array<LichenImage> = await fetch('https://italic.units.it/api/v1/images/1691').
+  then(res => res.json()).
+  then(data => data.data)
+
+console.log(images);
+
 ---
-<BaseLayout pageTitle={pageTitle}>
-  <p>Welcome to the home page!</p>
+<img pageTitle={pageTitle}>
+  <p class="my-4">Welcome to the home page!</p>
+  <div class="flex gap-2  rounded-md bg-slate-200 p-2 flex-wrap justify-center">
+  {images.map(image =>
+  <img loading="lazy" class="h-40 w-56  rounded-md object-cover" src={image.thumbnail}></img>
+  )}
+</div>
 </BaseLayout>
