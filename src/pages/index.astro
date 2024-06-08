@@ -24,21 +24,7 @@ console.log(images);
   <p class="my-4">Welcome to the home page!</p>
   <hr class="bg-black my-2" />
 
-  <LightBox client:load />
-
   <div class="mx-auto flex gap-2 p-2 m-2 flex-wrap justify-center max-w-[1200px]">
-    {
-      images.map((image, index) => (
-        <LightBox images={images} currentImageId={index} client:load>
-          <Image
-            width="224"
-            height="160"
-            class="rounded-md object-cover  max-w-[224px] min-w-[224px] max-h-[160px] min-h-[160px]"
-            src={image.thumbnail}
-            alt={image.id}
-          />
-        </LightBox>
-      ))
-    }
+    <LightBox images={images} client:load />
   </div>
 </BaseLayout>
