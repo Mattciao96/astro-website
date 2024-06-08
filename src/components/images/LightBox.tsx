@@ -7,7 +7,7 @@ export default function LightBox({ images, currentImageId, children }) {
       <Button className="cursor-pointer focus-visible:ring-2 focus-visible:ring-white/75">
         {children}
       </Button>
-      {children}
+      
       <ModalOverlay
         className={({ isEntering, isExiting }) => `
           fixed inset-0 z-10 overflow-y-auto bg-black/25 flex min-h-full items-center justify-center p-4 text-center backdrop-blur
