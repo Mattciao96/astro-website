@@ -1,28 +1,38 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-const pageTitle = 'Home';
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+const pageTitle = "Home";
 
 // take images from api
 type LichenImage = {
-  id: string,
-  thumbnail: string,
-  image: string,
-  author: string,
-  owner: string
-}
+  id: string;
+  thumbnail: string;
+  image: string;
+  author: string;
+  owner: string;
+};
 
-const images: Array<LichenImage> = await fetch('https://italic.units.it/api/v1/images/1691').
-  then(res => res.json()).
-  then(data => data.data)
+const images: Array<LichenImage> = await fetch("https://italic.units.it/api/v1/images/822")
+  .then((res) => res.json())
+  .then((data) => data.data);
 
 console.log(images);
-
 ---
-<img pageTitle={pageTitle}>
+
+<BaseLayout pageTitle={pageTitle}>
   <p class="my-4">Welcome to the home page!</p>
-  <div class="flex gap-2  rounded-md bg-slate-200 p-2 flex-wrap justify-center">
-  {images.map(image =>
-  <img loading="lazy" class="h-40 w-56  rounded-md object-cover" src={image.thumbnail}></img>
-  )}
-</div>
+  <hr class="bg-black my-2" />
+  <div class="mx-auto flex gap-2 p-2 m-2 flex-wrap justify-center max-w-[1200px]">
+    {
+      images.map((image) => (
+        <Image
+          width="224"
+          height="160"
+          class="rounded-md object-cover max-w-[224px] max-h-[160px]"
+          src={image.thumbnail}
+          alt={image.id}
+        />
+      ))
+    }
+  </div>
 </BaseLayout>

@@ -1,20 +1,25 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 
-const markdownConfigs = {
+const markdownConfig = {
   shikiConfig: {
     themes: {
-      light: 'catppuccin-latte',
-      dark: 'catppuccin-macchiato'
+      light: "catppuccin-latte",
+      dark: "catppuccin-macchiato",
     },
     langs: [],
     wrap: true,
-    transformers: []
-  }
+    transformers: [],
+  },
+};
+
+const imageConfig = {
+  remotePatterns: [{ protocol: "https" }],
 };
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind()],
-  markdown: markdownConfigs
+  markdown: markdownConfig,
+  image: imageConfig,
 });
