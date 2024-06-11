@@ -14,16 +14,32 @@ import { Zoom, Navigation, Pagination } from "swiper/modules";
 export default function SwiperBox({ images, currentImageId }) {
   const swiperElRef = useRef(null);
 
+  const swiperRef = useRef(null);
+
   useEffect(() => {
-    // listen for Swiper events using addEventListener
-    swiperElRef.current.addEventListener("swiperprogress", (e) => {
-      const [swiper, progress] = e.detail;
-      console.log(progress);
+    // Register Swiper web component
+    register();
+
+    // Add event listener
+    swiperRef.current.addEventListener('swiperslidechange', (e) => {
+      console.log(e.detail);
     });
 
-    swiperElRef.current.addEventListener("swiperslidechange", (e) => {
-      console.log("slide changed");
-    });
+    // Object with parameters
+    const params = {
+      // or pass it in on
+      on: {
+        slideChange(s) {
+          console.log(s);
+        },
+      },
+    };
+
+    // Assign it to swiper element
+    Object.assign(swiperRef.current, params);
+
+    // initialize swiper
+    swiperRef.current.initialize();
   }, []);
 
   return (
@@ -43,9 +59,9 @@ export default function SwiperBox({ images, currentImageId }) {
       initialSlide={currentImageId}
     >
       {images.map((image) => (
-        <swiper-slide>
+        <swiper-slide key={image.id} lazy="true">
           <div className="swiper-zoom-container ">
-            <img className="object-contain" src={image.image} />
+            <img loading="lazy" className="object-contain" src={image.image} />
           </div>
         </swiper-slide>
       ))}
