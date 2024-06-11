@@ -18,9 +18,13 @@ const imageConfig = {
   }]
 };
 
+// the url of the hosted website
+// useful for ssr feed
+const siteConfig = "https://example.com"
 
 // https://astro.build/config
 export default defineConfig({
+  site: siteConfig,
   integrations: [tailwind(), react()],
   markdown: markdownConfig,
   image: imageConfig
