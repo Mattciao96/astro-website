@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
+import mdx from "@astrojs/mdx";
 const markdownConfig = {
   shikiConfig: {
     themes: {
@@ -20,12 +21,13 @@ const imageConfig = {
 
 // the url of the hosted website
 // useful for ssr feed
-const siteConfig = "https://example.com"
+const siteConfig = "https://example.com";
+
 
 // https://astro.build/config
 export default defineConfig({
   site: siteConfig,
-  integrations: [tailwind(), react()],
+  integrations: [tailwind(), react(), mdx()],
   markdown: markdownConfig,
   image: imageConfig
 });
