@@ -10,12 +10,13 @@ export default function LightBox({ images }) {
     <DialogTrigger>
       {images.map((image, index) => (
         <Button
+          key={image.id}
           onPress={() => setCurrentIndex(index)}
           className="cursor-pointer focus-visible:ring-2 focus-visible:ring-white/75"
         >
           <img
        
-            class="rounded-md object-contain  max-h-[160px] min-h-[160px]"
+            className="rounded-md object-contain max-h-[160px] min-h-[160px]"
             src={image.thumbnail}
             alt={image.id}
           />
@@ -49,7 +50,7 @@ export default function LightBox({ images }) {
                   Are you sure you want to delete "Documents"? All contents will be permanently
                   destroyed.
                 </p>
-                <div className="max-w-[600px]">
+                <div className="max-w-[600px] max-h-[600px] min-w-[600px] min-h-[600px]">
                   <SwiperBox images={images} currentImageId={currentIndex} />
                 </div>
                 <div className="mt-6 flex justify-end gap-2">

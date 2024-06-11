@@ -17,14 +17,14 @@ const images: Array<LichenImage> = await fetch("https://italic.units.it/api/v1/i
   .then((res) => res.json())
   .then((data) => data.data);
 
-console.log(images);
+//console.log(images);
 ---
 
 <BaseLayout pageTitle={pageTitle}>
   <p class="my-4">Welcome to the home page!</p>
   <hr class="bg-black my-2" />
 
-  <div class="mx-auto flex gap-2 p-2 m-2 flex-wrap justify-center max-w-[1200px]">
+  <div class="mx-auto flex gap-2 p-2 m-2 flex-wrap justify-left max-w-[1200px]">
     <LightBox images={images} client:load />
   </div>
 </BaseLayout>
